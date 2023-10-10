@@ -1,55 +1,116 @@
-let sourceImg=null;
-let maskImg=null;
-let renderCounter=0;
+let sourceImg = null;
+let maskImg = null;
+let cnv;
 
-// change these three lines as appropiate
-let sourceFile = "input_1.jpg";
-let maskFile   = "mask_1.png";
-let outputFile = "output_1.png";
+let sourceFile = "input_new2.jpg"; // Your source image file
+let maskFile = "mask_new2.png"; // Your mask image file
 
 function preload() {
   sourceImg = loadImage(sourceFile);
   maskImg = loadImage(maskFile);
 }
 
-function setup () {
-  let main_canvas = createCanvas(1920, 1080);
-  main_canvas.parent('canvasContainer');
+function setup() {
+  cnv = createCanvas(sourceImg.width, sourceImg.height);
 
-  imageMode(CENTER);
-  noStroke();
-  background(255, 0, 0);
-  sourceImg.loadPixels();
-  maskImg.loadPixels();
+  // Apply the curve effect to the entire image
+  applyEffectToCanvas();
+
+  // Overlay the source image where the mask is white
+  overlaySourceWithMask();
+
+  // Overlay checherboad pattern over mask
+  overlayDistortedCheckerboardPatternOverMask();
+
+  // Draw outline
+  //drawMaskOutline();
 }
 
-function draw () {
-  for(let i=0;i<4000;i++) {
-    let x = floor(random(sourceImg.width));
-    let y = floor(random(sourceImg.height));
-    let pix = sourceImg.get(x, y);
-    let mask = maskImg.get(x, y);
-    fill(pix);
-    if(mask[0] > 128) {
-      let pointSize = 10;
-      ellipse(x, y, pointSize, pointSize);
-    }
-    else {
-      let pointSize = 20;
-      rect(x, y, pointSize, pointSize);    
+function overlayDistortedCheckerboardPatternOverMask() {
+  let patternSize = 20; 
+  strokeWeight(1);
+  for (let col = 0; col < sourceImg.width; col++) {
+    for (let row = 0; row < sourceImg.height; row++) {
+      let maskColor = maskImg.get(col, row);
+      let sourceColor = sourceImg.get(col, row);
+      
+      // If the mask pixel is not black and source pixel is grey or white
+      if (!(red(maskColor) < 1 && green(maskColor) < 1 && blue(maskColor) < 1) && (red(sourceColor) > 180 && green(sourceColor) > 180 && blue(sourceColor) > 180)) {
+        
+        // Create a distortion using sin and cos functions
+        let distortion = Math.sin(col * 0.05) * 5 + Math.cos(row * 0.05) * 5;
+        
+        // Apply the distortion to the checkerboard pattern
+        let isChecker = (Math.floor((col + distortion) / patternSize) + Math.floor((row + distortion) / patternSize)) % 2 == 0;
+        if (isChecker) {
+          // Set the pixel to grey
+          stroke(66, 66, 66);
+          point(col, row);
+        }
+      }
     }
   }
-  renderCounter = renderCounter + 1;
-  if(renderCounter > 10) {
-    console.log("Done!")
-    noLoop();
-    // uncomment this to save the result
-    // saveArtworkImage(outputFile);
+}
+
+
+
+function drawMaskOutline() {
+  stroke(255, 255, 46);  // Yellow color for the outline
+  strokeWeight(12);    
+  for (let col = 1; col < maskImg.width - 1; col++) {
+    for (let row = 1; row < maskImg.height - 1; row++) {
+      let maskColor = maskImg.get(col, row);
+      if (red(maskColor) > 30 && green(maskColor) > 30 && blue(maskColor) > 30) {
+        // Check adjacent pixels
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            let adjacentColor = maskImg.get(col + dx, row + dy);
+            if (red(adjacentColor) < 20 || green(adjacentColor) < 20 || blue(adjacentColor) < 20) {
+              point(col, row);
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function applyEffectToCanvas() {
+  for (let col = 0; col < sourceImg.width; col += 10) {
+    for (let row = 0; row < sourceImg.height; row += 10) {
+      let xPos = col;
+      let yPos = row;
+      let c = sourceImg.get(xPos, yPos); 
+
+      push();
+      translate(xPos, yPos);
+      noFill();
+      strokeWeight(random(3));
+      stroke(color(c));
+      curve(xPos, yPos, sin(xPos) * 68, cos(xPos) * sin(xPos) * 40,
+              0, 0, cos(yPos) * sin(yPos) * random(140), cos(xPos) * sin(xPos) * 50);
+      pop();
+    }
+  }
+}
+
+function overlaySourceWithMask() {
+  for (let col = 0; col < sourceImg.width; col++) {
+    for (let row = 0; row < sourceImg.height; row++) {
+      let maskColor = maskImg.get(col, row);
+      // If the mask pixel is not black show source image
+      if (red(maskColor) > 1 && green(maskColor) > 1 && blue(maskColor) > 1) {
+        let originalColor = sourceImg.get(col, row);
+        stroke(originalColor);
+        point(col, row);
+      }
+    }
   }
 }
 
 function keyTyped() {
   if (key == '!') {
-    saveBlocksImages();
+    saveCanvas(cnv, 'myCanvas', 'jpg');
   }
 }
