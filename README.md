@@ -41,7 +41,7 @@ Here is the effect after using the smart outline method
 
 # Final Image 
 
-I created my final image entirely using HTML and CSS, this was inspired by A$AP Rocky's album “Testing”
+I created my final image entirely using HTML and CSS, this was inspired by A$AP Rocky's album “Testing”. You can hover over the images to show the input image.
 ![Testing](images/testing.jpg)
 
 ![Final Image](previewHD.jpg)
