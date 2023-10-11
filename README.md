@@ -30,4 +30,4 @@ For the outline, I looped through the mask pixels to identify pixels that belong
 
 I selected my final image because the blur effectively showcases all elements of my filter, with minimal imperfections.
 
-![Final Image](images/finalImage.png)
+![Final Image](previewHD.jpg)
