@@ -7,7 +7,7 @@
 
 Initially, I had numerous issues with training my images. However, this was mainly due to my masks being inverted. This challenge might have been beneficial, as it prompted me to be more selective with my photos. I chose to focus on a single individual rather than multiple people. The output of my test image was commendable, with most imperfections being rectified through software. Nonetheless, some imperfections weren't feasible to address due to software limitations, particularly when considering performance.
 
-# Running the program
+# Running the Program
 
 Running the program can take up to 5 minutes so be patient. It may also say that the website is unresponsive but it will load eventually if you just give it time.
 
