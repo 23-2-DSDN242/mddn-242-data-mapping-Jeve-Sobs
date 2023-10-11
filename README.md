@@ -9,7 +9,7 @@ Initially, I had numerous issues with training my images. However, this was main
 
 # Design
 
-My final result was closely aligned with my initial vision but with some enhancements:
+Silent Harmony serves to create somewhat of a dichotomy between one's inner peace and the external frenzy of life. My final result was closely aligned with my initial vision but with some enhancements:
 
 1. **Blur Effect**: I refined the blur effect to align with my concept of portraying a chaotic world around someone. I'm quite pleased with the result. The randomised rendering provides a fresh effect with every new image. [See sketch.js lines 117-134](https://github.com/23-2-DSDN242/mddn-242-data-mapping-Jeve-Sobs/blob/main/sketch.js#L117-L134).
 2. **Subject Highlight**: I accentuated my subject to emphasise that they were the focal point of the image. [See sketch.js lines 52-72](https://github.com/23-2-DSDN242/mddn-242-data-mapping-Jeve-Sobs/blob/main/sketch.js#L52-L72).
