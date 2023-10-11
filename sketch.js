@@ -2,8 +2,8 @@ let sourceImg = null;
 let maskImg = null;
 let cnv;
 
-let sourceFile = "input_new2.jpg"; // Your source image file
-let maskFile = "mask_new2.png"; // Your mask image file
+let sourceFile = "input_6.jpg"; // Your source image file
+let maskFile = "mask_6.png"; // Your mask image file
 
 function preload() {
   sourceImg = loadImage(sourceFile);
@@ -12,7 +12,6 @@ function preload() {
 
 function setup() {
   cnv = createCanvas(sourceImg.width, sourceImg.height);
-
   // Apply the curve effect to the entire image
   applyEffectToCanvas();
   // Overlay the source image where the mask is white
@@ -95,7 +94,7 @@ function drawSmartMaskOutline() {
         }
 
         if (foundDots.length > 10 && !nearbyDotExists) {
-          continue;  // Skip this iteration if no dots are nearby after the first few dots
+          continue;  // Skip this iteration if no dots are nearby after the first 10 dots
         }
 
         // Check adjacent pixels
