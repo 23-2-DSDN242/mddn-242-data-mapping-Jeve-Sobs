@@ -15,15 +15,13 @@ function setup() {
 
   // Apply the curve effect to the entire image
   applyEffectToCanvas();
-
   // Overlay the source image where the mask is white
   overlaySourceWithMask();
-
   // Overlay checherboad pattern over mask
   overlayDistortedCheckerboardPatternOverMask();
-
   // Draw outline
-  //drawMaskOutline();
+  drawMaskOutline();
+  noLoop();
 }
 
 function overlayDistortedCheckerboardPatternOverMask() {
@@ -35,7 +33,7 @@ function overlayDistortedCheckerboardPatternOverMask() {
       let sourceColor = sourceImg.get(col, row);
       
       // If the mask pixel is not black and source pixel is grey or white
-      if (!(red(maskColor) < 1 && green(maskColor) < 1 && blue(maskColor) < 1) && (red(sourceColor) > 180 && green(sourceColor) > 180 && blue(sourceColor) > 180)) {
+      if (!(red(maskColor) < 1 && green(maskColor) < 1 && blue(maskColor) < 1) && (red(sourceColor) > 195 && green(sourceColor) > 195 && blue(sourceColor) > 195)) {
         
         // Create a distortion using sin and cos functions
         let distortion = Math.sin(col * 0.05) * 5 + Math.cos(row * 0.05) * 5;
@@ -51,8 +49,6 @@ function overlayDistortedCheckerboardPatternOverMask() {
     }
   }
 }
-
-
 
 function drawMaskOutline() {
   stroke(255, 255, 46);  // Yellow color for the outline
@@ -75,6 +71,49 @@ function drawMaskOutline() {
     }
   }
 }
+
+
+function drawSmartMaskOutline() {
+  stroke(255, 255, 46);  // Yellow color for the outline
+  strokeWeight(12);
+
+  let minimumDistance = 15; 
+  let foundDots = [];  
+  for (let row = maskImg.height - 2; row >= 1; row--) {
+    for (let col = 1; col < maskImg.width - 1; col++) {
+      let maskColor = maskImg.get(col, row);
+      if (red(maskColor) > 10 && green(maskColor) > 10 && blue(maskColor) > 10) {
+        
+        // Check if any dots are nearby
+        let nearbyDotExists = false;
+        for (let dot of foundDots) {
+          let distance = Math.sqrt(Math.pow(col - dot.x, 2) + Math.pow(row - dot.y, 2));
+          if (distance < minimumDistance) {
+            nearbyDotExists = true;
+            break;
+          }
+        }
+
+        if (foundDots.length > 10 && !nearbyDotExists) {
+          continue;  // Skip this iteration if no dots are nearby after the first few dots
+        }
+
+        // Check adjacent pixels
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            let adjacentColor = maskImg.get(col + dx, row + dy);
+            if (red(adjacentColor) < 10 || green(adjacentColor) < 10 || blue(adjacentColor) < 10) {
+              point(col, row);
+              foundDots.push({ x: col, y: row });
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 function applyEffectToCanvas() {
   for (let col = 0; col < sourceImg.width; col += 10) {

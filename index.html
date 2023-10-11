@@ -1,39 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom pixel by UWCC</title>
 
-  <meta
-    name="Custom pixel by UWCC"
-    content="Image filtering with Creative Coding and AI"
-  />
-  <meta name="description" content="Image filtering with Creative Coding and AI" />
-  <meta property="og:title" content="Custom pixel by UWCC" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://23-2-dsdn242.github.io/mddn242-data-mapping/" />
-  <meta property="og:image" content="https://23-2-dsdn242.github.io/mddn242-data-mapping//preview.jpg" />
-  <meta property="og:image:width" content="960" />
-  <meta property="og:image:height" content="540" />
-  <meta property="og:description" content="Image filtering with Creative Coding and AI" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:creator" content="@uwcc" />
-  <meta name="twitter:title" content="Custom pixel by UWCC" />
-  <meta name="twitter:description" content="Image filtering with Creative Coding and AI" />
-  <meta name="twitter:image" content="https://23-2-dsdn242.github.io/mddn242-data-mapping/preview.jpg" />
+    <meta name="Custom pixel by UWCC" content="Image filtering with Creative Coding and AI" />
+    <meta name="description" content="Image filtering with Creative Coding and AI" />
+    <meta property="og:title" content="Custom pixel by UWCC" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://23-2-dsdn242.github.io/mddn242-data-mapping/" />
+    <meta property="og:image" content="https://23-2-dsdn242.github.io/mddn242-data-mapping//preview.jpg" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="540" />
+    <meta property="og:description" content="Image filtering with Creative Coding and AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@uwcc" />
+    <meta name="twitter:title" content="Custom pixel by UWCC" />
+    <meta name="twitter:description" content="Image filtering with Creative Coding and AI" />
+    <meta name="twitter:image" content="https://23-2-dsdn242.github.io/mddn242-data-mapping/preview.jpg" />
+
+    <style>
+      body {
+          background-color: #17161b; 
+      }
+      table {
+          width: 1460; 
+          margin-left: auto;  
+          margin-right: auto; 
+          border-collapse: collapse;
+      }
+      th {
+          font-size: 120px;
+          font-weight: bold;
+          padding: 10px;
+          border-bottom: 14px solid rgb(255, 255, 46); font-style: italic;
+          color: rgb(255, 255, 46);
+      }
+      img {
+        height: 190px; 
+        width: 355px;  
+        margin: 5px;
+        margin-top: 20px;
+}
+      @font-face {
+            font-family: 'DelaGothicOne';
+            src: url('fonts/DelaGothicOne-Regular.ttf') format('truetype');
+        }
+        .cool-font {
+            font-family: 'DelaGothicOne', sans-serif;
+            font-style: italic;
+            transform: scaleX(1.5);
+        }
+        .link-font {
+          font-family: 'DelaGothicOne', sans-serif; 
+          transform: scaleX(1.5);
+          font-style: italic;
+          font-size: 30px; 
+          color: rgb(255, 255, 46);
+          text-decoration: none;
+        }
+        .link-font:hover {
+          text-decoration: underline;
+        }
+        .link-container {
+          text-align: center; 
+        }
+        a {
+          color: rgb(255, 255, 46);
+          text-decoration: 
+          none;
+        }  
+        a:hover {
+          text-decoration: underline;
+        }
+        .hover-image {
+          position: relative;
+          display: inline-block;
+        }
+
+
+  </style>
 
 </head>
-<body style="background-color:white">
-    <table>
-        <tr>
-        <th>Training</th>
-        <td><a href="output_1.png"><img height="256" width="480" src="output_1.png"></a></td>
-        <td><a href="output_2.png"><img height="256" width="480" src="output_2.png"></a></td>
-        <td><a href="output_3.png"><img height="256" width="480" src="output_3.png"></a></td>
-        </tr>
+<body>
+  <table>
+    <tr>
+        <th colspan="4" class="cool-font">TRAINING</th>
+    </tr>
+    <tr>
+        <td class="hover-image" data-hover-image="input_6.jpg">
+            <a href="output_1.png"><img class="original-image" height="256" width="480" src="output_1.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_1.jpg">
+            <a href="output_2.png"><img class="original-image" height="256" width="480" src="output_2.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_5.jpg">
+            <a href="output_3.png"><img class="original-image" height="256" width="480" src="output_3.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_2.jpg">
+            <a href="output_7.png"><img class="original-image" height="256" width="480" src="output_7.png"></a>
+        </td>
+    </tr>
 
-        <tr>
-        <th>Testing</th>
-        <td><a href="output_4.png"><img height="256" width="480" src="output_4.png"></a></td>
-        <td><a href="output_5.png"><img height="256" width="480" src="output_5.png"></a></td>
-        <td><a href="output_6.png"><img height="256" width="480" src="output_6.png"></a></td>
-        </tr>
-    </table>
-    <a href="render.html">render program</a>
+    <tr>
+        <th colspan="4" class="cool-font">TESTING</th>
+    </tr>
+    <tr>
+        <td class="hover-image" data-hover-image="input_new1.jpg">
+            <a href="output_4.png"><img class="original-image" height="256" width="480" src="output_4.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_new2.jpg">
+            <a href="output_5.png"><img class="original-image" height="256" width="480" src="output_5.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_new4.jpg">
+            <a href="output_6.png"><img class="original-image" height="256" width="480" src="output_6.png"></a>
+        </td>
+        <td class="hover-image" data-hover-image="input_new3.jpg">
+            <a href="output_8.png"><img class="original-image" height="256" width="480" src="output_8.png"></a>
+        </td>
+    </tr>
+</table>
+    <div class="link-container">
+      <a href="render.html" class="link-font">RENDER PROGRAM</a>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let hoverImages = document.querySelectorAll('.hover-image');
+
+        hoverImages.forEach(function(hoverElement) {
+            let originalImage = hoverElement.querySelector('.original-image');
+            let hoverImageSrc = hoverElement.getAttribute('data-hover-image');
+
+            hoverElement.addEventListener('mouseover', function() {
+                originalImage.src = hoverImageSrc;
+            });
+
+            hoverElement.addEventListener('mouseout', function() {
+                originalImage.src = originalImage.getAttribute('data-original');
+            });
+
+            originalImage.setAttribute('data-original', originalImage.src);
+        });
+    });
+</script>
 </body>
+</html>
